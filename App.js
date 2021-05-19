@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Platform,
-  StatusBar,
-} from 'react-native';
+import { View, Text, StyleSheet, TextInput, Platform, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Focus } from './src/features/focus/Focus';
 import { FocusHistory } from './src/features/focus/FocusHistory';
@@ -24,13 +17,9 @@ export default function App() {
 
   const addFocusHistorySubjectWithStatus = (subject, status) => {
     if (focusHistory.length > 0) {
-      setFocusHistory([
-        ...focusHistory,
-        { key: String(focusHistory.length + 1), subject, status },
-      ]);
-    }
-    else {
-      setFocusHistory([{ key: String(focusHistory.length + 1), subject, status }])
+      setFocusHistory([...focusHistory, { key: String(focusHistory.length + 1), subject, status }]);
+    } else {
+      setFocusHistory([{ key: String(focusHistory.length + 1), subject, status }]);
     }
   };
 
@@ -67,6 +56,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#61dafb" barStyle={'light-content'} />
       {focusSubject ? (
         <Timer
           focusSubject={focusSubject}
@@ -93,6 +83,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.darkBlue,
-    marginTop: Platform.OS !== 'ios' && spacing.lg,
+    paddingTop: Platform.OS === 'ios' ? spacing.md : spacing.lg,
   },
 });
